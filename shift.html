@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>点击按钮复制图片到粘贴板</title>
+    <style type="text/css">
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            background: #f4f4f4;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .image {
+            width: 300px;
+            height: 100px;
+            margin-top: 100px;
+        }
+
+        .btn {
+            margin-top: 100px;
+            color: #fff;
+            background: #00b51d;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            cursor: pointer;
+            padding: 20px 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="draw-img">
+            <img src="https://www.baidu.com/img/bd_logo1.png" alt="" class="image">
+        </div>
+        <br>
+        <button type="button" class="btn" id="copy">点击复制图片</button>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script>
+        var clipboard = new ClipboardJS('#copy', {
+            target: function () {
+                return document.querySelector('#draw-img')
+            }
+        })
+        clipboard.on('success', function (e) {
+            // clipboard.destroy(); // 复制完毕删除，否则会有创建多个clipboard对象
+            alert('复制成功')
+        });
+        clipboard.on('error', function (e) {
+            console.log(e);
+        });
+    </script>
+</body>
+
+</html>
